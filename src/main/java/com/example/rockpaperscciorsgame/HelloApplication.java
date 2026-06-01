@@ -3,12 +3,13 @@ package com.example.rockpaperscciorsgame;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.animation.FadeTransition;
+import javafx.util.Duration;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
@@ -245,6 +246,11 @@ public class HelloApplication extends Application {
         } else {
             resultLabel.setText("Unfortunately! You lost this round!"); resultLabel.setStyle("-fx-text-fill: red;");
         }
+        // ANIMATION: Fade transition for the result label
+        FadeTransition ft = new FadeTransition(Duration.millis(600), resultLabel);
+        ft.setFromValue(0.0);
+        ft.setToValue(1.0);
+        ft.play();
 
         // Check if the tournament has concluded
         if (userWins == targetScore || computerWins == targetScore) {
